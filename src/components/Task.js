@@ -19,7 +19,7 @@ class Task extends React.Component {
                     <div className="card-body">
                         <h5 className="card-title">{ name }</h5>
                         <p className="card-text">{ description }</p>
-                        <button  className={ done === false ? 'btn btn-primary' : 'btn btn-success '} disabled={ done === false ? false : true} onClick= { this.changeStatus } >{ done ===false ? 'Lista' : 'Terminada'} </button>
+                        <button  className={ done === 0 ? 'btn btn-primary' : 'btn btn-success '} disabled={ done === 0 ? 0 : 1} onClick= { this.changeStatus } >{ done ===0 ? 'Lista' : 'Terminada'} </button>
                         <button  className='btn btn-warning buttonMargin' onClick= { this.editTask } >Editar </button>
                     </div>
                 </div>

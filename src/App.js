@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import List from './components/List';
 import Form from './components/Form';
-import {getTodos} from './service/taskService';
+import {getTodos,save, finish, pending, edit, changeStatusTask } from './service/taskService';
 const App = ()=> {
   
     const [tasks, setTasks] = useState([])
@@ -12,45 +12,47 @@ const App = ()=> {
     const [name, setName]=useState()
     const [description, setDescription] = useState()
   
-  useEffect(() => {
-      getTodos().then( data =>  setTasks( data ) )
+  useEffect( () => {
+      getTodos().then( data => setTasks( data.tasks ))
   }, [])
+
+  
+
   const agregarTarea = task =>{    
-    const newTasks = [...tasks] 
-    task.id=newTasks[newTasks.length-1].id+1;
-    newTasks.push( task )
-    setTasks(newTasks)
+    save(task)
+      .then( ()=> getTodos().then( data => setTasks( data.tasks )))
+      .catch( error => alert("Se produjo un Error al agregar la tarea"))
   }
+
   const editarTarea = task =>{
-    const newTasks = [...tasks] 
-    newTasks.forEach(t => {
-      if(t.id === task.id){
-        t.name= task.name;
-        t.description = task.description
-      }
-      setTasks(newTasks)
+      edit(task).then( ()=> getTodos().then( data => setTasks( data.tasks )) )
       setName('')
       setDescription('')
-      setIdTask('');
-    })
+      setIdTask('');    
   }
+
   const changeTaskStatus = ( task ) => {
-    const taskUpdated = tasks.map(taskEl => {
-      if (taskEl.id === task.id) taskEl.done = !taskEl.done
-      return taskEl
-    })
-    setTasks(taskUpdated)
+    task.done = 1;
+    console.log(task);
+    changeStatusTask(task).then( ()=> getTodos().then( data => setTasks( data.tasks )) )
+    // const taskUpdated = tasks.map(taskEl => {
+    //   if (taskEl.id === task.id) taskEl.done = !taskEl.done
+    //   return taskEl
+    // })
+
+    // setTasks(taskUpdated)
   }
   
   const taskAll= ()=>{
-    setFilterTask('all')
+    getTodos().then( data => setTasks( data.tasks ))
   }
   const taskPending = ()=>{
-    setFilterTask('pending')
+    pending().then( data => setTasks( data.tasks ))
   }
   const taskFinish= ()=>{
-    setFilterTask('finish')
+    finish().then( data =>setTasks( data.tasks ))
   }
+
   const editTask=(task)=>{
     let edit;
     const taskUpdated = tasks.map(taskEl => {

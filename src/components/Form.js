@@ -21,7 +21,6 @@ const Form = (props)=> {
                 props.editarTarea(task);
             }else{
                 task = {
-                    id: '',
                     name : nameTask.current.value,
                     description: descriptionTask.current.value,
                     done :false
@@ -38,7 +37,7 @@ const Form = (props)=> {
             <div className="card-body">
                 <form onSubmit={crearTarea}>
                     <div className="form-group">
-                        <label >{props.name ? props.name : 'nombre de la tarea'}Nombre de la Tarea</label>
+                        <label >Nombre de la Tarea</label>
                         <input type="text"  ref={nameTask} defaultValue={props.name ? props.name : ''}  className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
                         <small id="emailHelp" className="form-text text-muted">Nombre específico de la tarea.</small>
                     </div>
