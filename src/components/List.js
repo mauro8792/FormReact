@@ -3,15 +3,19 @@ import Task from "./Task";
 
 const List =(props)=>{
  return (
-    <>
+    < >
+      
       {props.tasksList.map((task, key) => (
-        <Task
-          task={task}
-          onChangeState={() => props.onChangeTaskStatus(task)}
-          editTask = {()=>props.editTask(task)}
-          key={key}
-        />
-      ))}
+          <Task
+            userList = {()=>props.userList}
+            task={task}
+            onChangeState={() => props.onChangeTaskStatus(task)}
+            editTask = {()=>props.editTask(task)}
+            deleteTask={()=>props.deleteTask(task)}
+            key={key}
+          />
+          ))}
+      
     </>
   );
 }

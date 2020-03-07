@@ -45,7 +45,7 @@ export const edit = async (task)=>{
 
 export const changeStatusTask = async (task)=>{
   return fetch(`http://localhost:3000/api/tasks/${task.id}/change`, {
-    method: 'PUT',
+    method: 'PATCH',
     body: JSON.stringify(task),
     headers: {
         'Content-Type': 'application/json'
@@ -53,6 +53,18 @@ export const changeStatusTask = async (task)=>{
   }).then(res => {
       console.log(res);
       
+      return res;
+  }).catch(err => err);
+}
+
+export const eliminar = async (task)=>{
+  return fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+    method: 'DELETE',
+    body: JSON.stringify(task),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }).then(res => {
       return res;
   }).catch(err => err);
 }
