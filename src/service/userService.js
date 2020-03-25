@@ -19,3 +19,28 @@ export const signUPService = async (user)=>{
   })
   .then(response => { return response.user[0]} );
 }
+export const eliminarUsuario = async (user)=>{
+  console.log(JSON.stringify(user))
+  
+  return fetch(`http://localhost:3000/api/users/${user}`, {
+    method: 'DELETE',
+    // body: JSON.stringify(user),
+    
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }).then(res => {
+      return res;
+  }).catch(err => err);
+}
+export const saveUser = async(user)=>{
+  return fetch('http://localhost:3000/api/users/', {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  }).then(res => {
+      return res;
+  }).catch(err => err);
+}

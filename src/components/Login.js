@@ -19,6 +19,9 @@ const Login = (props)=> {
         }
         e.currentTarget.reset();
     }
+    const registrarUser =()=>{
+        props.registrar();
+    }
     return (
         
         <div>
@@ -40,8 +43,8 @@ const Login = (props)=> {
                                 <label>Contraseña</label>
                                 <input type="password" ref={password} className="form-control" placeholder="Password"/>
                             </div>
-                            <button type="submit" className="btn btn-secondary">Login</button>
-                            <button type="submit" className="btn btn-primary" style={{'marginLeft': '2%'}} >Register</button>
+                            <button type="submit" className="btn btn-secondary">Ingresar</button>
+                            <button type="submit" onClick={registrarUser} className="btn btn-primary" style={{'marginLeft': '2%'}} >Registrar</button>
                         </form>
                     </div>
                 </div>

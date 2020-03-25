@@ -37,8 +37,6 @@ export const edit = async (task)=>{
         'Content-Type': 'application/json'
     }
   }).then(res => {
-      console.log(res);
-      
       return res;
   }).catch(err => err);
 }
@@ -67,6 +65,14 @@ export const eliminar = async (task)=>{
   }).then(res => {
       return res;
   }).catch(err => err);
+}
+
+export const myTask = async (id)=>{
+    const url = `http://localhost:3000/api/users/${id}/tasks`
+    const response = await fetch(url);
+    const data = await response.json();
+    return data
+
 }
 
 

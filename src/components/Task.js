@@ -6,13 +6,13 @@ class Task extends React.Component {
         this.props.onChangeState(this.props.task)
       }
     editTask = ()=>{
-        this.props.editTask(this.props.task.id)
+        this.props.editTask(this.props.task)
     }
     deleteTask = ()=>{
         this.props.deleteTask(this.props.task.id)
     }
     render() {
-        const { name, description, done } = this.props.task
+        const { name, description, done, nameUser, lastUser } = this.props.task
         return (
             <>
             
@@ -22,7 +22,7 @@ class Task extends React.Component {
                     </div>
                     <div className="card-body">
                         <h5 className="card-title">{ name }</h5>
-                        
+                        <p>Responsable de la tarea: "{nameUser +' '+ lastUser}"</p>
                         <p className="card-text">{ description }</p>
                         <button  className={ done === 0 ? 'btn btn-primary' : 'btn btn-success '} disabled={ done === 0 ? 0 : 1} onClick= { this.changeStatus } >{ done ===0 ? 'Lista' : 'Terminada'} </button>
                         <button  className='btn btn-warning buttonMargin' onClick= { this.editTask } >Editar </button>

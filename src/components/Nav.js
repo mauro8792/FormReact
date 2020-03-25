@@ -2,9 +2,15 @@ import React from "react";
 
 const Nav = (props)=> {
     const {name} = props.userLogin;
-
+        
     const logOut = ()=>{
         props.logOut();
+    }
+    const showUser = ()=>{     
+        props.showUser();
+    }
+    const taskView = ()=>{
+        props.showTask();
     }
     
     return (
@@ -18,6 +24,12 @@ const Nav = (props)=> {
                     <div className="collapse navbar-collapse" id="exCollapsingNavbar">
                         <ul className="nav navbar-nav">
                             
+                            <li className="nav-item">
+                                <button type="button" onClick={showUser} className="btn btn-secondary">Usuarios</button>
+                            </li>
+                            <li className="nav-item" > 
+                                <button type="button" onClick={taskView} className="btn btn-secondary" style={{'marginLeft': '10%'}}>Tareas</button>
+                            </li>
                         </ul>
                         <ul className="nav navbar-nav flex-row justify-content-between ml-auto">
                         <li className="nav-item"  >
